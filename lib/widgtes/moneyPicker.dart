@@ -35,14 +35,14 @@ class _MoneyPickerState extends State<MoneyPicker> {
                     child: Icon(
                       Icons.currency_rupee,
                       color: Colors.blue,
-                      size: 15,
+                      size: 18,
                     ),
                   ),
                   Text(
                     widget.label,
                     style: const TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 15,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500,
                         color: Colors.blue),
                   ),
