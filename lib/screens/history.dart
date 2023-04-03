@@ -29,7 +29,9 @@ class _HistoryState extends State<History> {
             Container(
               margin: const EdgeInsets.only(top: 50),
               child: StreamBuilder(
-                stream: _cloudCollection.snapshots(),
+                stream: _cloudCollection
+                    .orderBy('date', descending: true)
+                    .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   return ListView.builder(
