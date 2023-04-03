@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.poc">
    <application
-        android:label="poc"
+        android:label="IWallet"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
