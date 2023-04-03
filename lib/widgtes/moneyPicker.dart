@@ -6,7 +6,7 @@ class MoneyPicker extends StatefulWidget {
     required this.onTap,
     required this.label,
   });
-  final onTap;
+  final Function() onTap;
   final String label;
 
   @override

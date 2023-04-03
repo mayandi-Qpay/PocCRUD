@@ -53,23 +53,28 @@ class _MyAppState extends State<MyApp> {
                               indexValue = e['index'];
                             });
                           },
-                          child: Column(
-                            children: [
-                              Icon(
-                                e['icon'],
-                                color: indexValue == e['index']
-                                    ? Colors.blue
-                                    : Colors.grey,
-                                size: 30,
-                              ),
-                              Text(
-                                e['title'],
-                                style: TextStyle(
-                                    color: indexValue == e['index']
-                                        ? Colors.blue
-                                        : Colors.grey),
-                              ),
-                            ],
+                          child: SizedBox(
+                            width: 150,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  e['icon'],
+                                  color: indexValue == e['index']
+                                      ? Colors.blue
+                                      : Colors.grey,
+                                  size: 30,
+                                ),
+                                Text(
+                                  e['title'],
+                                  style: TextStyle(
+                                      color: indexValue == e['index']
+                                          ? Colors.blue
+                                          : Colors.grey),
+                                ),
+                              ],
+                            ),
                           ),
                         ))
                     .toList()),

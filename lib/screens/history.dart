@@ -28,65 +28,90 @@ class _HistoryState extends State<History> {
           children: [
             Container(
               margin: const EdgeInsets.only(top: 50),
-              child: StreamBuilder(
+              child: StreamBuilder<QuerySnapshot>(
                 stream: _cloudCollection
                     .orderBy('date', descending: true)
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (ctx, index) => Padding(
-                      padding: const EdgeInsets.only(left: 5, right: 5),
-                      child: Card(
-                          child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Amount Added",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: Text(
-                                    "+ ₹ ${snapshot.data!.docs[index]['amount']}",
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10, top: 5),
-                              child: Row(
+                  return snapshot.hasData
+                      ? ListView.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (ctx, index) => Padding(
+                            padding: const EdgeInsets.only(left: 5, right: 5),
+                            child: Card(
+                                child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              child: Column(
                                 children: [
-                                  Text(
-                                    "Date : ${convertedDate(snapshot.data!.docs[index]['date'])}",
-                                    style: const TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          "Amount Added",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 10),
+                                        child: Text(
+                                          "+ ₹ ${snapshot.data!.docs[index]['amount']}",
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 10, top: 5),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Date : ${convertedDate(snapshot.data!.docs[index]['date'])}",
+                                          style: const TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        )
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                      )),
-                    ),
-                  );
+                            )),
+                          ),
+                        )
+                      : Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 15),
+                                child: Text(
+                                  "Please wait...",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
                 },
               ),
             ),
